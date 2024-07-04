@@ -1,6 +1,6 @@
-const io = require("socket.io")(3001, {
+const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://share-hub-pi.vercel.app",
     methods: ["GET", "POST"],
   },
 });
