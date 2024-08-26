@@ -1,6 +1,5 @@
 const io = require("socket.io")(3001, {
   cors: {
-    // origin: "https://share-hub-pi.vercel.app",
     origin: "*",
     methods: ["GET", "POST"],
   },
@@ -55,6 +54,10 @@ io.on("connection", (socket) => {
       }
     }
   );
+
+  socket.on("progressUpdate", ({ fileName, progress, roomId }) => {
+    io.to(roomId).emit("progressUpdate", { fileName, progress });
+  });
 
   // for chat section
   socket.on("message", ({ message, roomId }) => {
